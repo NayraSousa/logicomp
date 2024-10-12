@@ -52,7 +52,20 @@ def atoms(formula: Formula):
     This piece of code above prints: p, s
     (Note that there is no repetition of p)
     """
-    pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
+
+    conjunto = set()
+
+    if isinstance(formula, Atom):
+        conjunto.add(formula.name)
+
+    if isinstance(formula, Not):
+        conjunto.update(atoms(formula.inner))
+
+    if isinstance(formula, Implies) or isinstance(formula, And) or isinstance(formula, Or):
+        conjunto.update(atoms(formula.left))
+        conjunto.update(atoms(formula.right))
+
+    return conjunto
 
 
 def number_of_atoms(formula: Formula):
