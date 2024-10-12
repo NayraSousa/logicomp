@@ -36,7 +36,6 @@ print('length of formula3:', length(formula3))
 print('length of formula7:', length(formula7))
 
 print('subformulas of formula7:')
-print(subformulas(formula7))
 
 for subformula in subformulas(formula7):
     print(subformula)
@@ -54,3 +53,7 @@ for subformula in subformulas(formula8):
 # for example, for formula8:
 print('number of subformulas of formula8:', len(subformulas(formula8)))
 print('len(subformulas(formula8)) <= length(formula8):', len(subformulas(formula8)) <= length(formula8))
+
+print(atoms(formula8))
+print(number_of_atoms(formula8))
+print(number_of_connectives(formula8))
