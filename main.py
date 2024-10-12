@@ -36,18 +36,12 @@ print('length of formula3:', length(formula3))
 print('length of formula7:', length(formula7))
 
 print('subformulas of formula7:')
-
-for subformula in subformulas(formula7):
-    print(subformula)
-# end for
-
+print(formula7)
 
 print('length of formula8:', length(formula8))
 print('subformulas of formula8:')
+print(formula8)
 
-for subformula in subformulas(formula8):
-    print(subformula)
-# end for
 
 #  we have shown in class that for all formula A, len(subformulas(A)) <= length(A):
 # for example, for formula8:
