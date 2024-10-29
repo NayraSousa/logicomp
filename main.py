@@ -10,12 +10,10 @@ formula3 = And(formula1, formula2)  # (p /\ q)
 formula4 = And(Atom('p'), Atom('s'))  # (p /\ s)
 formula5 = Not(And(Atom('p'), Atom('s')))  # (¬(p /\ s))
 formula6 = Or(Not(And(Atom('p'), Atom('s'))), Atom('q'))  # ((¬(p /\ s)) v q)
-formula7 = Implies(Not(And(Atom('p'), Atom('s'))), And(Atom('q'), Atom('r')))  # ((¬(p /\ s)) -> (q /\ r))
-formula8 = Implies(Not(And(Atom('p'), Atom('s'))), And(Atom('q'), Not(And(Atom('p'), Atom('s')))))
+formula7 = Implies(Not(And(Atom('p'), Atom('s'))), And(Not(Atom('q')), Atom('r')))  # ((¬(p /\ s)) -> (q /\ r))
+formula8 = Implies(And(Not(Atom('p')), Atom('s')), And(Atom('q'), And(Not(Atom('p')), Atom('s'))))
+formula9 = Not(Atom('p'))
 # ((¬(p /\ s)) -> (q /\ (¬(p /\ s))))
-
-# formula9 = Not('q')
-
 
 print(formula1 == formula3)
 print(formula1 == formula2)
@@ -29,7 +27,7 @@ print('formula5:', formula5)
 print('formula6:', formula6)
 print('formula7:', formula7)
 print('formula8:', formula8)
-
+print('formula9:', formula9)
 print('length of formula1:', length(formula1))
 print('length of formula3:', length(formula3))
 
@@ -51,3 +49,6 @@ print('len(subformulas(formula8)) <= length(formula8):', len(subformulas(formula
 print(atoms(formula8))
 print(number_of_atoms(formula8))
 print(number_of_connectives(formula8))
+
+print('formula6:', formula9)
+print(is_negation_normal_form(formula9))
