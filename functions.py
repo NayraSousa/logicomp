@@ -105,8 +105,19 @@ def is_literal(formula: Formula):
 def substitution(formula: Formula, old_subformula: Formula, new_subformula: Formula):
     """Returns a new formula obtained by replacing all occurrences
     of old_subformula in the input formula by new_subformula."""
-    pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
-
+    if formula == old_subformula:
+        formula = new_subformula
+        return formula
+    if isinstance(formula, Not):
+        return substitution(formula.inner, old_subformula, new_subformula)
+    elif isinstance(formula, And) or isinstance(formula, Or) or isinstance(formula, Implies):
+        if formula.left == old_subformula:
+            formula.left = new_subformula
+        elif formula.right == old_subformula:
+            formula.right = new_subformula
+        else:
+            substitution(formula.left, old_subformula, new_subformula) or substitution(formula.right, old_subformula, new_subformula)
+    return formula
 
 def is_clause(formula: Formula):
     """Returns True if formula is a clause. It returns False, otherwise"""

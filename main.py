@@ -52,3 +52,6 @@ print(number_of_connectives(formula8))
 
 print('formula6:', formula9)
 print(is_negation_normal_form(formula9))
+print(substitution(Implies(And(Atom('p'), Not(Atom('q'))), Atom('r')), Not(Atom('q')), Or(Atom('r'), Atom('t'))))
+print(formula8)
+print(substitution(formula8, And(Not(Atom('p')), Atom('s')), Atom('h')))
