@@ -170,8 +170,9 @@ def is_term(formula: Formula):
 def is_dnf(formula: Formula):
     """Returns True if formula is in disjunctive normal form.
     Returns False, otherwise."""
-    pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
-
+    if isinstance(formula, Or):
+        return is_term(formula.left) and is_term(formula.right)
+    return False
 
 def is_decomposable_negation_normal_form(formula: Formula):
     """Returns True if formula is in decomposable negation normal form.
