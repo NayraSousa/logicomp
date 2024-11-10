@@ -56,3 +56,5 @@ print(substitution(Implies(And(Atom('p'), Not(Atom('q'))), Atom('r')), Not(Atom(
 print(formula8)
 print(substitution(formula8, And(Not(Atom('p')), Atom('s')), Atom('h')))
 print(is_literal(Not(And(Not(Atom('p')), Atom('q')))))
+print('\n')
+print(is_clause(Not(Or(Or(Atom('p'), Not(Atom('q'))), Atom('r')))))
