@@ -102,7 +102,9 @@ def is_literal(formula: Formula):
     if isinstance(formula, Atom):
         return True
     if isinstance(formula, Not):
-        return is_literal(formula.inner)
+        is_literal(formula.inner)
+        if isinstance(formula, Not):
+            return False
     if isinstance(formula, Implies) or isinstance(formula, And) or isinstance(formula, Or):
         return False
 
@@ -152,8 +154,10 @@ def is_negation_normal_form(formula: Formula):
 def is_cnf(formula: Formula):
     """Returns True if formula is in conjunctive normal form.
     Returns False, otherwise."""
-    pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
-
+    if isinstance(formula, And):
+        return is_clause(formula.left) and is_clause(formula.right)
+    if isinstance(formula, Or) or isinstance(formula, Implies):
+        return False
 
 def is_term(formula: Formula):
     """Returns True if formula is a term. It returns False, otherwise"""
