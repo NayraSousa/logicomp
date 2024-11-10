@@ -103,8 +103,9 @@ def is_literal(formula: Formula):
         return True
     if isinstance(formula, Not):
         is_literal(formula.inner)
-        if isinstance(formula, Not):
+        if isinstance(formula.inner, Not):
             return False
+        return True
     if isinstance(formula, Implies) or isinstance(formula, And) or isinstance(formula, Or):
         return False
 
@@ -156,13 +157,15 @@ def is_cnf(formula: Formula):
     Returns False, otherwise."""
     if isinstance(formula, And):
         return is_clause(formula.left) and is_clause(formula.right)
-    if isinstance(formula, Or) or isinstance(formula, Implies):
-        return False
+    return False
 
 def is_term(formula: Formula):
     """Returns True if formula is a term. It returns False, otherwise"""
-    pass  # ======== REMOVE THIS LINE AND INSERT YOUR CODE HERE ========
-
+    if isinstance(formula, Atom):
+        return True
+    if isinstance(formula, And):
+        return is_literal(formula.left) and is_literal(formula.right)
+    return False
 
 def is_dnf(formula: Formula):
     """Returns True if formula is in disjunctive normal form.
